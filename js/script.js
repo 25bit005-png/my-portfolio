@@ -23,18 +23,18 @@ const projectsData = [
     demoUrl: 'https://ameer2007.github.io/taskflow-planner'
   },
   {
-    id: 'dev-canvas-palette',
-    title: 'DevCanvas — Accessible Color Contrast & Palette Tool',
+    id: 'student-fee-payment',
+    title: 'Student Fee Payment & Management System',
     category: 'practice',
     typeBadge: 'Practice Exercise',
     featured: true,
-    description: 'An interactive browser utility that tests foreground and background colors against WCAG 2.1 AA and AAA contrast guidelines in real time and generates reusable CSS custom properties.',
+    description: 'A structured Java console application that automates student fee collection, real-time balance computation, student record lookups, and formatted payment receipt generation using Object-Oriented Programming (OOP) principles.',
     imageSrc: null,
-    imageAlt: 'DevCanvas accessible color contrast ratio testing utility preview',
-    tags: ['HTML5 Form Controls', 'CSS Custom Properties', 'Vanilla JavaScript', 'Math Algorithms'],
-    learned: 'Studied digital accessibility standards in depth, programmed the mathematical relative luminance formula in pure JavaScript, and designed an accessible interface with visible keyboard focus indicators.',
-    githubUrl: 'https://github.com/Ameer2007/dev-canvas-palette',
-    demoUrl: 'https://ameer2007.github.io/dev-canvas-palette'
+    imageAlt: 'Student Fee Payment & Management System Java console receipt preview',
+    tags: ['Java (OOP)', 'Collections (ArrayList)', 'CLI Application', 'Encapsulation', 'Receipt Generator'],
+    learned: 'Engineered modular Java classes (Student, FeeSystem, Main) adhering to OOP encapsulation, utilized dynamic ArrayList data structures for record tracking, and implemented mathematical balance deduction with formatted billing receipts.',
+    githubUrl: 'https://github.com/25bit005-png/Studentt-fee-Payment',
+    demoUrl: 'https://github.com/25bit005-png/Studentt-fee-Payment'
   },
   {
     id: 'pulse-storefront',
@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTypewriter();
   initProjectFilters();
   initContactForm();
+  initFeeSimulator();
 });
 
 /* ==========================================================================
@@ -261,23 +262,31 @@ function getProjectVisual(project, title) {
     `;
   }
 
-  if (project.id === 'dev-canvas-palette') {
+  if (project.id === 'student-fee-payment') {
     return `
       <div class="mockup-visual-viewport">
-        <div class="mockup-visual-canvas visual-contrast">
-          <div class="contrast-demo-box">
-            <div class="contrast-swatch">
-              <span class="contrast-sample-text">Aa</span>
+        <div class="mockup-visual-canvas visual-feepay">
+          <div class="feepay-receipt-box">
+            <div class="feepay-header">
+              <span class="feepay-title-tag">JAVA CLI • FEE SYSTEM</span>
+              <span class="feepay-status-badge">✓ PAYMENT RECORDED</span>
             </div>
-            <div class="contrast-score-card">
-              <div class="contrast-ratio-num">7.4 : 1</div>
-              <div class="contrast-badges-row">
-                <span class="contrast-pass-badge">✓ WCAG AA</span>
-                <span class="contrast-pass-badge">✓ WCAG AAA</span>
+            <div class="feepay-details">
+              <div class="feepay-row">
+                <span class="feepay-lbl">Student:</span>
+                <span class="feepay-val">#1024 • Alex Morgan</span>
+              </div>
+              <div class="feepay-row">
+                <span class="feepay-lbl">Paid / Total:</span>
+                <span class="feepay-val">$750.00 / $1,000.00</span>
+              </div>
+              <div class="feepay-balance-pill">
+                <span>Remaining Balance:</span>
+                <strong>$250.00</strong>
               </div>
             </div>
           </div>
-          <div class="contrast-meta-info">Relative Luminance Contrast Checker • CSS Variables</div>
+          <div class="feepay-meta-info">OOP Architecture • ArrayList Ledger • Formatted Receipts</div>
         </div>
       </div>
     `;
@@ -420,10 +429,16 @@ function renderProjects(projects, container) {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
               GitHub Code
             </a>
-            <a href="${escapeHtml(project.demoUrl)}" class="btn btn-secondary btn-sm" aria-label="Explore ${title}">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-              Live Demo
-            </a>
+            ${project.id === 'student-fee-payment'
+              ? `<button type="button" class="btn btn-secondary btn-sm js-open-fee-simulator" aria-label="Open Interactive Java Simulator for ${title}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                  Interactive Demo
+                </button>`
+              : `<a href="${escapeHtml(project.demoUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="Explore ${title}">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Live Demo
+                </a>`
+            }
           </div>
         </div>
       </article>
@@ -676,3 +691,221 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+/* ==========================================================================
+   10. STUDENT FEE PAYMENT SYSTEM — JAVA CLI SIMULATOR
+   ========================================================================== */
+function initFeeSimulator() {
+  // Java OOP Simulation Engine mirroring Student.java & FeeSystem.java
+  class SimStudent {
+    constructor(id, name, totalFee, paidFee = 0) {
+      this.id = Number(id);
+      this.name = String(name);
+      this.totalFee = Number(totalFee);
+      this.paidFee = Number(paidFee);
+    }
+    payFee(amount) {
+      this.paidFee += Number(amount);
+    }
+    getBalance() {
+      return this.totalFee - this.paidFee;
+    }
+  }
+
+  let students = [
+    new SimStudent(101, 'Alex Morgan', 1000, 750),
+    new SimStudent(102, 'Samantha Reed', 1200, 1200),
+    new SimStudent(103, 'Jordan Lee', 800, 300)
+  ];
+
+  function createModal() {
+    let modal = document.getElementById('fee-terminal-modal');
+    if (modal) return modal;
+
+    modal = document.createElement('div');
+    modal.id = 'fee-terminal-modal';
+    modal.className = 'terminal-modal-backdrop';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Student Fee Payment Java Simulator');
+
+    modal.innerHTML = `
+      <div class="terminal-modal-window">
+        <div class="terminal-modal-header">
+          <div class="terminal-modal-title">
+            <span class="mockup-dot" style="background:#ef4444; width:10px; height:10px; border-radius:50%; display:inline-block;"></span>
+            <span class="mockup-dot" style="background:#f59e0b; width:10px; height:10px; border-radius:50%; display:inline-block;"></span>
+            <span class="mockup-dot" style="background:#10b981; width:10px; height:10px; border-radius:50%; display:inline-block;"></span>
+            <span>FeeSystem.java — Interactive Console</span>
+          </div>
+          <button type="button" class="terminal-modal-close-btn" id="close-fee-modal-btn" aria-label="Close Simulator">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="terminal-modal-body">
+          <div class="terminal-screen" id="sim-terminal-screen">
+<span class="prompt-line">[Java HotSpot(TM) 64-Bit Server VM initialized]</span>
+<span class="success-line">Compiling Student.java, FeeSystem.java, Main.java... OK</span>
+
+--- STUDENT FEE PAYMENT &amp; MANAGEMENT SYSTEM ---
+1. Add Student
+2. Pay Fee
+3. View Student
+4. Generate Receipt
+5. Exit
+
+Ready. Select an operation below to test the Java CLI logic:
+          </div>
+
+          <!-- Interactive Action Panel -->
+          <div class="terminal-controls">
+            <button type="button" class="terminal-ctrl-btn" id="sim-btn-receipt">🧾 4. Generate Receipt (#101)</button>
+            <button type="button" class="terminal-ctrl-btn" id="sim-btn-pay">💳 2. Pay $150 Fee (#101)</button>
+            <button type="button" class="terminal-ctrl-btn" id="sim-btn-view">👁 3. View Student (#103)</button>
+            <button type="button" class="terminal-ctrl-btn" id="sim-btn-add">➕ 1. Add Student (#104)</button>
+            <button type="button" class="terminal-ctrl-btn danger" id="sim-btn-reset">↺ Reset Ledger</button>
+            <a href="https://github.com/25bit005-png/Studentt-fee-Payment" target="_blank" rel="noopener noreferrer" class="terminal-ctrl-btn" style="margin-left:auto; text-decoration:none; display:inline-flex; align-items:center; gap:0.35rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              View GitHub Repo
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Event listeners for closing
+    const closeBtn = modal.querySelector('#close-fee-modal-btn');
+    closeBtn.addEventListener('click', () => closeModal(modal));
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal(modal);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        closeModal(modal);
+      }
+    });
+
+    const screen = modal.querySelector('#sim-terminal-screen');
+
+    function logToTerminal(textHtml) {
+      screen.innerHTML += `\n${textHtml}`;
+      screen.scrollTop = screen.scrollHeight;
+    }
+
+    // 1. Generate Receipt
+    modal.querySelector('#sim-btn-receipt').addEventListener('click', () => {
+      const s = students.find(item => item.id === 101);
+      if (s) {
+        logToTerminal(`
+<span class="prompt-line">&gt; Enter choice: 4</span>
+<span class="prompt-line">Enter Student ID: 101</span>
+<span class="prompt-line">Enter Amount Paid: 250.0</span>
+
+<span class="receipt-line">===== RECEIPT =====</span>
+Student ID: ${s.id}
+Name: ${escapeHtml(s.name)}
+Amount Paid: $250.0
+Total Paid: $${s.paidFee.toFixed(1)}
+Balance: $${s.getBalance().toFixed(1)}
+<span class="receipt-line">===================</span>`);
+      }
+    });
+
+    // 2. Pay Fee
+    modal.querySelector('#sim-btn-pay').addEventListener('click', () => {
+      const s = students.find(item => item.id === 101);
+      if (s) {
+        s.payFee(150);
+        logToTerminal(`
+<span class="prompt-line">&gt; Enter choice: 2</span>
+<span class="prompt-line">Enter Student ID: 101</span>
+<span class="prompt-line">Enter Amount: 150.0</span>
+<span class="success-line">Payment successful!</span>
+Updated Balance for ${escapeHtml(s.name)}: $${s.getBalance().toFixed(1)}`);
+      }
+    });
+
+    // 3. View Student
+    modal.querySelector('#sim-btn-view').addEventListener('click', () => {
+      const s = students.find(item => item.id === 103);
+      if (s) {
+        logToTerminal(`
+<span class="prompt-line">&gt; Enter choice: 3</span>
+<span class="prompt-line">Enter Student ID: 103</span>
+ID: ${s.id}
+Name: ${escapeHtml(s.name)}
+Total Fee: $${s.totalFee.toFixed(1)}
+Paid Fee: $${s.paidFee.toFixed(1)}
+Balance: $${s.getBalance().toFixed(1)}`);
+      }
+    });
+
+    // 4. Add Student
+    modal.querySelector('#sim-btn-add').addEventListener('click', () => {
+      const exists = students.find(item => item.id === 104);
+      if (!exists) {
+        students.push(new SimStudent(104, 'David Beckham', 1400, 0));
+        logToTerminal(`
+<span class="prompt-line">&gt; Enter choice: 1</span>
+<span class="prompt-line">Enter ID: 104</span>
+<span class="prompt-line">Enter Name: David Beckham</span>
+<span class="prompt-line">Enter Total Fee: 1400.0</span>
+<span class="success-line">Student added successfully!</span>`);
+      } else {
+        logToTerminal(`
+<span class="prompt-line">&gt; Student #104 already exists in ledger.</span>`);
+      }
+    });
+
+    // Reset
+    modal.querySelector('#sim-btn-reset').addEventListener('click', () => {
+      students = [
+        new SimStudent(101, 'Alex Morgan', 1000, 750),
+        new SimStudent(102, 'Samantha Reed', 1200, 1200),
+        new SimStudent(103, 'Jordan Lee', 800, 300)
+      ];
+      screen.innerHTML = `
+<span class="prompt-line">[Java HotSpot(TM) 64-Bit Server VM initialized]</span>
+<span class="success-line">Ledger reset to baseline sample data.</span>
+
+--- STUDENT FEE PAYMENT &amp; MANAGEMENT SYSTEM ---
+1. Add Student
+2. Pay Fee
+3. View Student
+4. Generate Receipt
+5. Exit
+
+Ready. Select an operation below to test the Java CLI logic:`;
+    });
+
+    return modal;
+  }
+
+  function openModal() {
+    const modal = createModal();
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    const closeBtn = modal.querySelector('#close-fee-modal-btn');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal(modal) {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  // Delegated click on trigger buttons
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('.js-open-fee-simulator');
+    if (trigger) {
+      e.preventDefault();
+      openModal();
+    }
+  });
+}
+
