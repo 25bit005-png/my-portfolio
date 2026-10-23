@@ -9,20 +9,6 @@
    ========================================================================== */
 const projectsData = [
   {
-    id: 'taskflow-planner',
-    title: 'TaskFlow — Student Task & Study Planner',
-    category: 'school',
-    typeBadge: 'School Project',
-    featured: true,
-    description: 'A responsive personal task organizer built for students to manage academic course assignments, track Kanban sprint workflow stages, and plan daily study milestones.',
-    imageSrc: 'images/project-one.png',
-    imageAlt: 'TaskFlow student study board screenshot showing Kanban task columns and priorities',
-    tags: ['HTML5 (Semantic)', 'CSS Grid & Flexbox', 'Vanilla JavaScript (ES6+)', 'LocalStorage API'],
-    learned: 'Designed an intuitive mobile-first interface from scratch, implemented clean DOM creation and event delegation without external libraries, and used browser LocalStorage so assignments persist across page refreshes.',
-    githubUrl: 'https://github.com/Ameer2007/taskflow-planner',
-    demoUrl: 'https://ameer2007.github.io/taskflow-planner'
-  },
-  {
     id: 'student-fee-payment',
     title: 'Student Fee Payment & Management System',
     category: 'practice',
@@ -35,6 +21,20 @@ const projectsData = [
     learned: 'Engineered modular Java classes (Student, FeeSystem, Main) adhering to OOP encapsulation, utilized dynamic ArrayList data structures for record tracking, and implemented mathematical balance deduction with formatted billing receipts.',
     githubUrl: 'https://github.com/25bit005-png/Studentt-fee-Payment',
     demoUrl: 'https://github.com/25bit005-png/Studentt-fee-Payment'
+  },
+  {
+    id: 'taskflow-planner',
+    title: 'TaskFlow — Student Task & Study Planner',
+    category: 'school',
+    typeBadge: 'School Project',
+    featured: true,
+    description: 'A responsive personal task organizer built for students to manage academic course assignments, track Kanban sprint workflow stages, and plan daily study milestones.',
+    imageSrc: 'images/project-one.png',
+    imageAlt: 'TaskFlow student study board screenshot showing Kanban task columns and priorities',
+    tags: ['HTML5 (Semantic)', 'CSS Grid & Flexbox', 'Vanilla JavaScript (ES6+)', 'LocalStorage API'],
+    learned: 'Designed an intuitive mobile-first interface from scratch, implemented clean DOM creation and event delegation without external libraries, and used browser LocalStorage so assignments persist across page refreshes.',
+    githubUrl: 'https://github.com/Ameer2007/taskflow-planner',
+    demoUrl: 'https://ameer2007.github.io/taskflow-planner'
   },
   {
     id: 'pulse-storefront',
@@ -430,15 +430,15 @@ function renderProjects(projects, container) {
               GitHub Code
             </a>
             ${project.id === 'student-fee-payment'
-              ? `<button type="button" class="btn btn-secondary btn-sm js-open-fee-simulator" aria-label="Open Interactive Java Simulator for ${title}">
+        ? `<button type="button" class="btn btn-secondary btn-sm js-open-fee-simulator" aria-label="Open Interactive Java Simulator for ${title}">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
                   Interactive Demo
                 </button>`
-              : `<a href="${escapeHtml(project.demoUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="Explore ${title}">
+        : `<a href="${escapeHtml(project.demoUrl)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="Explore ${title}">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                   Live Demo
                 </a>`
-            }
+      }
           </div>
         </div>
       </article>
